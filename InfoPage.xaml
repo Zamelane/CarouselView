@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CarouselView.InfoPage"
+             Title="Информация о журналисте">
+    <ScrollView Padding="0,0,0,15">
+        <VerticalStackLayout>
+            <Frame Padding="-1" Margin="5">
+                <Image Source="{Binding Img}"/>
+            </Frame>
+            <Label Text="{Binding Name}"
+           HorizontalOptions="Center"
+           FontAttributes="Bold"
+           FontSize="Large"/>
+            <Label BackgroundColor="#a3b18a" HeightRequest="1" Margin="5"/>
+
+            <Label Text="{Binding Description}"
+           Padding="10,0,10,0"/>
+            <Label BackgroundColor="#a3b18a" HeightRequest="1" Margin="5"/>
+
+            <Label Text="Факты"
+           Padding="10,0,10,0"
+           FontAttributes="Bold"
+           FontSize="Medium"/>
+            <CollectionView ItemsSource="{Binding Evidence}"
+                    Margin="10,0,10,0">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Label>
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="{Binding Name}"
+                                  FontAttributes="Bold"/>
+                                    <Span Text=": "
+                                  FontAttributes="Bold"/>
+                                    <Span Text="{Binding Value}"/>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

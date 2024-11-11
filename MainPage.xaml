@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:CarouselView.view_models"
+             x:Class="CarouselView.MainPage"
+             Title="Metanit, .NET MAUI, 10-11 глава"
+             BackgroundColor="#fefae0">
+
+    <ScrollView>
+        <StackLayout Padding="0,0,0,10">
+            <Label Text="CarouselView"
+                   FontSize="Large"
+                   FontAttributes="Bold,Italic"
+                   Margin="10,0,0,0"
+                   FontFamily="TimesNewRoman"/>
+            <VerticalStackLayout Padding="5">
+                <CarouselView ItemsSource="{Binding Journalists}"
+                              IndicatorView="indicatorView">
+                    <CarouselView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame CornerRadius="5" BorderColor="Transparent" BackgroundColor="Transparent">
+                                <VerticalStackLayout Spacing="10">
+                                    <Label Text="{Binding Name}"
+                                           HorizontalTextAlignment="Center"
+                                           FontAttributes="Bold"
+                                           FontSize="Large"/>
+                                    <Frame CornerRadius="15" Padding="-1">
+                                        <Image Source="{Binding Img}"
+                                               Aspect="AspectFill"
+                                               MaximumHeightRequest="150"/>
+                                    </Frame>
+                                    <Button Text="Подробнее"
+                                            BackgroundColor="#a3b18a"
+                                            Command="{Binding ShowJournalistCommand, Source={RelativeSource AncestorType={x:Type vm:MainPageModel}}}"
+                                            CommandParameter="{Binding}"/>
+                                </VerticalStackLayout>
+                            </Frame>
+                        </DataTemplate>
+                    </CarouselView.ItemTemplate>
+                </CarouselView>
+                <IndicatorView Margin="0, 10, 0, 0" x:Name="indicatorView"
+                               IndicatorColor="LightGray"
+                               SelectedIndicatorColor="DarkGray"
+                               HorizontalOptions="Center" />
+            </VerticalStackLayout>
+
+            <Label Text="CollectionView"
+                   FontSize="Large"
+                   FontAttributes="Bold,Italic"
+                   Margin="10,10,0,0"
+                   FontFamily="TimesNewRoman"/>
+            <CollectionView ItemsSource="{Binding Journalists}"
+                            ItemsLayout="VerticalGrid, 2">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame CornerRadius="5"
+                               Margin="5"
+                               BackgroundColor="#e9edc9"
+                               BorderColor="#ccd5ae">
+                            <VerticalStackLayout Spacing="10">
+                                <Label Text="{Binding Name}"
+                                       HorizontalTextAlignment="Center"
+                                       FontAttributes="Bold"
+                                       FontSize="Large"/>
+                                <Frame CornerRadius="5" Padding="-1">
+                                    <Image Source="{Binding Img}"
+                                           Aspect="AspectFill"
+                                           MaximumHeightRequest="150"/>
+                                </Frame>
+                                <Button Text="Подробнее"
+                                        BackgroundColor="#a3b18a"
+                                        Command="{Binding ShowJournalistCommand, Source={RelativeSource AncestorType={x:Type vm:MainPageModel}}}"
+                                        CommandParameter="{Binding}"/>
+                            </VerticalStackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
+    </ScrollView>
+
+</ContentPage>
